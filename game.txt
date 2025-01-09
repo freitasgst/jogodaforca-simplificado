@@ -1,0 +1,54 @@
+P:advogado
+D:É uma profissão muito bem vista
+D:Trabalha com terno e lida com leis
+D:Profissional que representa clientes em processos judiciais e fornece aconselhamento jurídico.
+P:amendoim
+D:É visto como um pestisco
+D:Combina com cerveja
+P:escola
+D:É uma instituição
+D:Tem muitas salas de aulas
+D:Lugar onde crianças e adolescentes vão para aprender com professores.
+P:futebol
+D:É um esporte
+D:Todo brasileiro nasce sabendo jogar
+D:Jogado com uma bola entre duas equipes de onze jogadores, onde o objetivo é marcar gols.
+P:calendário
+D:É um objeto que normalmente fica na parede ou em cima da mesa
+D:É usado para acompanhar e organizar os dias, semanas e meses do ano
+D:Utilizado para marcar datas comemorativas, feriados e eventos especiais, facilitando o planejamento e a organização do tempo.
+P:cérebro
+D:É um órgão do corpo humano
+D:Esse órgão é responsável por controlar todas as funções do corpo, incluindo pensamento, memória, emoções e movimentos
+P:cicatriz
+D:É um sinal na pele após um corte ou ferida
+D:Pode ser muito grande ou pequena
+D:Pode ser causada por cirurgias, queimaduras, cortes ou ferimentos, e geralmente apresenta uma textura diferente da pele ao redor.
+P:tomate
+D:É um legume, mas também é considerado uma fruta
+D:Está quase sempre presente nas saladas e pizzas
+P:grampeador
+D:É um objeto de escritório
+D:Utilizado para juntar várias folhas em um documento só
+P:hamster
+D:É um animal pequeno
+D:Primo dos ratos
+D:Pequeno roedor de estimação conhecido por suas bochechas rechonchudas.
+P:helicóptero
+D:É um tipo de transporte
+D:É frequentemente usado para resgates de pessoas
+D:Tipo de aeronave que possui hélices horizontais, permitindo que ele voe para cima, para baixo e em todas as direções.
+P:madrasta
+D:Pode ser membro de algumas famílias
+D:A cinderela tem uma muito malvada
+D:Mulher que se casa com o pai de alguém e assume o papel de mãe em relação aos filhos dele.
+P:microfone
+D:É um objeto usado em shows e eventos
+D:Usado para amplificar o som da voz
+D:Objeto essencial em diversas áreas como música, comunicação, entretenimento e gravação de áudio.
+P:pneu
+D:É um objeto com formato circular
+D:Sem ele um carro não pode andar
+P:ventilador
+D:É um objeto muito usado no verão
+D:Pode ser instalado no teto ou ser portátil
