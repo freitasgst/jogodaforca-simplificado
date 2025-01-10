@@ -23,10 +23,10 @@ def readGameFile():
 
 
 def chooseRandomWord(words):
-    palavra = random.choice(words)
-    while 'D:' in palavra:
-        palavra = random.choice(words)
-    return palavra
+    word = random.choice(words)
+    while 'D:' in word:
+        word = random.choice(words)
+    return word
 
 
 def selectAllHints(words, word):
@@ -57,7 +57,8 @@ def checkIfGameIsOver(guesses, word):
 
 
 def chooseRandomHint(hints):
-    return random.choice(hints)[2:]
+    rhint = random.choice(hints)
+    return 'Hint: ' + rhint
 
 
 def checkIfCharWasUsed(char, usedLettersArr):
