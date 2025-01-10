@@ -11,18 +11,18 @@ correctGuesses = []
 
 
 def drawGameScreen(word, hint):
+    # print('\033[H\033[J', end='')
     os.system('cls' if os.name == 'nt' else 'clear')
-    print('Used Letters: ', ', '.join(usedLettersArr))
     print('Wrong Guesses: ', ', '.join(incorrectGuess))
     print('\n')
     for char in word:
-        if char in correctGuesses:
+        if char in correctGuesses or not char.isalpha():
             print(char, end='')
         else:
             print('_ ', end='')
     print('\n')
     if hint:
-        print('Hint: ', hint)
+        print(hint)
 
 
 def drawEndScreen():
@@ -44,9 +44,11 @@ def main():
     while True:
         char = input('\nType a letter or ask for a hint: ')
         valid = checkIfCharIsValid(char)
+
         while not valid:
             char = input('\nInvalid. Type a letter or ask for a hint: ')
             valid = checkIfCharIsValid(char)
+
         char = char.upper()
         if char == 'HINT':
             hint = chooseRandomHint(hints)
