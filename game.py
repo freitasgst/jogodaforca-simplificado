@@ -1,23 +1,21 @@
 import time
-import os
-from functions import setUpGame, chooseRandomHint, checkIfCharIsCorrect
-from functions import checkIfCharIsValid, checkIfCharWasUsed, checkIfGameIsOver
+from functions import game_setup, choose_random_hint, check_game_over
+from functions import check_entry_validity, check_used_arr, check_correct_arr
 
 
-usedLettersArr = []
-guessedLetters = []
-incorrectGuess = []
-correctGuesses = []
+used_char_arr = []
+wrong_guesses = []
+right_guesses = []
 
 
-def drawGameScreen(word, hint):
-    # print('\033[H\033[J', end='')
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print('\nDigite \'ESC\' para sair\n')
-    print('Wrong Guesses: ', ', '.join(incorrectGuess))
+def draw_game_screen(hint):
+    global word
+    print('\033[H\033[J', end='')
+    print('\nType \'9\' to exit game\n')
+    print('Wrong Guesses: ', ', '.join(wrong_guesses))
     print('\n')
     for char in word:
-        if char in correctGuesses or not char.isalpha():
+        if char in right_guesses or not char.isalpha():
             print(char, end='')
         else:
             print('_ ', end='')
@@ -26,53 +24,68 @@ def drawGameScreen(word, hint):
         print(hint)
 
 
-def drawEndScreen():
+def draw_end_screen():
     print('You Win!')
     time.sleep(1)
 
 
-def clearAllArrays():
-    usedLettersArr.clear()
-    guessedLetters.clear()
-    incorrectGuess.clear()
-    correctGuesses.clear()
+def reset_game():
+    used_char_arr.clear()
+    wrong_guesses.clear()
+    right_guesses.clear()
 
 
-def main():
-    word, hints = setUpGame()
-    drawGameScreen(word, None)
-
+def game_loop():
+    global word, hints
     while True:
         char = input('\nType a letter or ask for a hint: ')
-        valid = checkIfCharIsValid(char)
+        valid = check_entry_validity(char)
 
         while not valid:
             char = input('\nInvalid. Type a letter or ask for a hint: ')
-            valid = checkIfCharIsValid(char)
+            valid = check_entry_validity(char)
 
-        char = char.upper()
-        if char == 'HINT':
-            hint = chooseRandomHint(hints)
-            drawGameScreen(word, hint)
-        elif char == 'ESC':
+        if char == '9':
             break
         else:
-            if checkIfCharWasUsed(char, usedLettersArr):
-                hint = 'You\'ve already typed this letter.'
-                drawGameScreen(word, hint)
+            char = char.upper()
+            game_turn(char)
+
+
+def game_turn(char):
+    global word, hints
+    if char == 'HINT':
+        hint = choose_random_hint(hints)
+        draw_game_screen(hint)
+    else:
+        if check_used_arr(char, used_char_arr):
+            hint = f'You\'ve already guessed the letter {char}.'
+            draw_game_screen(hint)
+        else:
+            used_char_arr.append(char)
+            if check_correct_arr(char, word):
+                right_guesses.append(char)
+                draw_game_screen(None)
             else:
-                usedLettersArr.append(char)
-                if checkIfCharIsCorrect(char, word):
-                    correctGuesses.append(char)
-                    drawGameScreen(word, None)
-                else:
-                    incorrectGuess.append(char)
-                    drawGameScreen(word, None)
-        if checkIfGameIsOver(correctGuesses, word):
-            drawEndScreen()
-            clearAllArrays()
-            word, hints = setUpGame()
-            drawGameScreen(word, None)
+                wrong_guesses.append(char)
+                draw_game_screen(None)
+    game_turn_over()
+
+
+def game_turn_over():
+    global word, hints
+    if check_game_over(right_guesses, word):
+        draw_end_screen()
+        reset_game()
+        word, hints = game_setup()
+        draw_game_screen(None)
+
+
+def main():
+    global word, hints
+    word, hints = game_setup()
+    draw_game_screen(None)
+    game_loop()
 
 
 main()
