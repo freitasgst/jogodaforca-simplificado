@@ -30,20 +30,21 @@ def chooseRandomWord(words):
 
 
 def selectAllHints(words, word):
-    dicas = []
+    hints = []
     for i in range(len(words)):
         if (words[i] == word):
             k = i + 1
             while 'D:' in words[k]:
-                dicas.append(words[k][2:].strip())
+                hints.append(words[k][2:].strip())
                 k += 1
                 if (k == len(words)):
                     break
-    return dicas
+    return hints
 
 
 def checkIfCharIsValid(char):
-    if (not char.isalpha() or (len(char) != 1 and char.upper() != 'HINT')):
+    char = char.upper()
+    if (not char.isalpha() or (len(char) != 1 and (char != 'HINT' and char != 'ESC'))):
         return False
     return True
 
