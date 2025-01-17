@@ -7,29 +7,29 @@ import random
 # RESET = "\033[0;0m"
 
 
-def setUpGame():
-    words = readGameFile()
-    rword = chooseRandomWord(words)
-    hints = selectAllHints(words, rword)
+def game_setup():
+    words = game_read_file()
+    rword = choose_random_word(words)
+    hints = select_all_hints(words, rword)
     rword = rword[2:].strip().upper()
     return rword, hints
 
 
-def readGameFile():
+def game_read_file():
     file = open('game.txt', 'r', encoding='utf-8')
     words = file.readlines()
     file.close()
     return words
 
 
-def chooseRandomWord(words):
+def choose_random_word(words):
     word = random.choice(words)
     while 'D:' in word:
         word = random.choice(words)
     return word
 
 
-def selectAllHints(words, word):
+def select_all_hints(words, word):
     hints = []
     for i in range(len(words)):
         if (words[i] == word):
@@ -42,14 +42,14 @@ def selectAllHints(words, word):
     return hints
 
 
-def checkIfCharIsValid(char):
+def check_entry_validity(char):
     char = char.upper()
-    if (not char.isalpha() or (len(char) != 1 and (char != 'HINT' and char != 'ESC'))):
-        return False
-    return True
+    if ((char.isalpha() and len(char) == 1) or char == 'HINT' or char == '9'):
+        return True
+    return False
 
 
-def checkIfGameIsOver(guesses, word):
+def check_game_over(guesses, word):
     setword = set(word)
     guesses = set(guesses)
     if len(setword.difference(guesses)) == 0:
@@ -57,17 +57,17 @@ def checkIfGameIsOver(guesses, word):
     return False
 
 
-def chooseRandomHint(hints):
+def choose_random_hint(hints):
     rhint = random.choice(hints)
     return 'Hint: ' + rhint
 
 
-def checkIfCharWasUsed(char, usedLettersArr):
-    if char in usedLettersArr:
+def check_used_arr(char, used_letters_array):
+    if char in used_letters_array:
         return True
 
 
-def checkIfCharIsCorrect(char, word):
+def check_correct_arr(char, word):
     if char in word:
         return True
     return False
