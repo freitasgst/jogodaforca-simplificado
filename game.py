@@ -13,6 +13,7 @@ correctGuesses = []
 def drawGameScreen(word, hint):
     # print('\033[H\033[J', end='')
     os.system('cls' if os.name == 'nt' else 'clear')
+    print('\nDigite \'ESC\' para sair\n')
     print('Wrong Guesses: ', ', '.join(incorrectGuess))
     print('\n')
     for char in word:
@@ -53,6 +54,8 @@ def main():
         if char == 'HINT':
             hint = chooseRandomHint(hints)
             drawGameScreen(word, hint)
+        elif char == 'ESC':
+            break
         else:
             if checkIfCharWasUsed(char, usedLettersArr):
                 hint = 'You\'ve already typed this letter.'
